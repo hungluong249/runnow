@@ -10,31 +10,18 @@ Author: hung.luong@matocreative.vn
 ===========================
  */
 
-@font-face {
-    font-family: 'webFont-r';
-    src: url("../fonts/SanFranciscoText-Regular.otf");
-}
-
-@font-face {
-    font-family: 'webFont-b';
-    src: url("../fonts/SanFranciscoText-Bold.otf");
-}
-
-@font-face {
-    font-family: 'webFont-m';
-    src: url("../fonts/SanFranciscoText-Medium.otf");
-}
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,600,700');
 
 body{
-    font-family: 'webFont-r';
+    font-family: 'Oswald', sans-serif;
     font-size: 1em;
 }
 
 h1{
-    font-family: "webFont-b";
+    font-weight: 700;
 
     &.title-xlg{
-        font-size: 14.375rem;
+        font-size: 5.625rem;
     }
 
     &.title-lg{
@@ -43,7 +30,7 @@ h1{
 }
 
 h2{
-    font-family: "webFont-b";
+    font-weight: 700;
 
     &.title-md{
         font-size: 2.1875rem;
@@ -59,28 +46,28 @@ h2{
 }
 
 h3{
-    font-family: "webFont-b";
+    font-weight: 700;
 
     &.title-sm{
         font-size: 1.5rem;
     }
 
     &.subtitle-md{
-        font-family: "webFont-r";
+        font-weight: 600;
         font-size: 1.125rem;
-
-        text-transform: uppercase;
     }
 }
 
 h4{
     &.subtitle-sm{
-        font-family: "webFont-r";
+        font-weight: 400;
         font-size: 1rem;
     }
 }
 
 p{
+    font-weight: 400;
+
     &.paragraph{
         font-size: 1rem;
     }
@@ -91,7 +78,7 @@ p{
 }
 
 .nav-items{
-    font-family: "webFont-b";
+    font-weight: 600;
     font-size: 1.125rem;
 }
 
@@ -101,7 +88,7 @@ p{
 
 .btn{
     &.btn-primary{
-        font-family: "webFont-b";
+        font-weight: 600;
         font-size: 1.125rem;
     }
 }
@@ -123,21 +110,7 @@ SMALL DESKTOPS (UNDER 1600px)
  */
 
 @media (max-width: 1600px) and (min-width: 1025px) {
-    h1{
-        &.title-xlg{
-            font-size: 10rem;
-        }
 
-        &.title-lg{
-            font-size: 3rem;
-        }
-    }
-
-    h2{
-        &.title-md{
-            font-size: 1.875rem;
-        }
-    }
 }
 
 /*
@@ -147,21 +120,7 @@ TABLETS (Under 1024px)
  */
 
 @media (max-width: 1024px) and (min-width: 993px){
-    h1{
-        &.title-xlg{
-            font-size: 10rem;
-        }
 
-        &.title-lg{
-            font-size: 3rem;
-        }
-    }
-
-    h2{
-        &.title-md{
-            font-size: 1.75rem;
-        }
-    }
 }
 
 /*
@@ -171,15 +130,7 @@ VERTICAL TABLETS (Under 992px)
  */
 
 @media (max-width: 992px) and (min-width: 768px){
-    h1{
-        &.title-xlg{
-            font-size: 10rem;
-        }
 
-        &.title-lg{
-            font-size: 3rem;
-        }
-    }
 }
 
 /*
@@ -189,14 +140,6 @@ MOBILE DEVICES (Under 768px)
  */
 
 @media (max-width: 768px){
-    h1{
-        &.title-xlg{
-            font-size: 10rem;
-        }
 
-        &.title-lg{
-            font-size: 2.75rem;
-        }
-    }
 }
 

@@ -10,56 +10,61 @@ Author: hung.luong@matocreative.vn
 ===========================
  */
 
-footer{
-    clear: both;
+.subscribe{
+    margin-top: 30px;
+    margin-bottom: 30px;
 
-    @include gradient-primary;
+    padding-top: 30px;
+    padding-bottom: 30px;
 
-    .container-fluid{
-        padding-left: 0;
-        padding-right: 0;
+    width: 100%;
 
-        position: relative;
+    position: relative;
 
-        .image{
-            height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
-            position: absolute;
-            top: 0;
+    .overlay{
+        width: 100%;
+        height: 100%;
 
-            .mask{
-                width: 100%;
-                height: 100%;
-            }
+        position: absolute;
+        top: 0;
+        left: 0;
 
-            &.left{
-                width: 300px;
+        background-color: rgba(0,0,0,0.8);
+    }
 
-                left: 0;
-            }
+    .row{
+        align-items: center;
 
-            &.right{
-                width: 150px;
+        h3{
+            &.subtitle-md{
+                color: #fff;
 
-                right: 0;
+                margin-bottom: 0;
             }
         }
     }
+}
+
+footer{
+
+    background-color: $primary;
 
     .container{
         padding-top: 50px;
         padding-bottom: 50px;
 
         .row{
-
             padding-top: 30px;
             padding-bottom: 30px;
 
             border-bottom: 1px solid #fff;
 
             color: #fff;
-
-            font-family: "webFont-m";
 
             p{
                 &.paragraph{
@@ -69,15 +74,27 @@ footer{
 
             &.head{
                 .item{
-                    ul{
-                        margin-top: 30px;
 
+                    &:first-of-type{
+                        ul{
+                            li{
+                                a{
+                                    color: #fff;
+                                    font-size: 1.5rem;
+                                }
+                            }
+                        }
+                    }
+
+                    ul{
                         li{
+                            font-size: 1.5rem;
+
                             a{
 
-                                font-size: 1rem;
+                                font-size: 1.125rem;
 
-                                color: #fff;
+                                color: #7a7a7a;
 
                                 &:hover{
                                     color: #fff;
@@ -91,6 +108,17 @@ footer{
 
                         &:focus{
                             box-shadow: none;
+                        }
+                    }
+
+                    &:last-of-type{
+                        ul{
+                            text-align: right;
+
+                            li{
+                                display: inline-block;
+                                margin-left: 15px;
+                            }
                         }
                     }
                 }

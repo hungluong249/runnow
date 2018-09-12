@@ -1,5 +1,253 @@
 <section id="product-detail">
-    <div class="cover">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="left col">
+				<div class="item col-xs-12 col-md-12">
+					<div id="cover">
+						<div class="mask">
+							<img src="<?php echo site_url('assets/img/shoes/') . $detail['detail_images'][0] ?>" alt="image <?php echo $detail['title'] ?>">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+                    <?php foreach ($detail['detail_images'] as $key => $value): ?>
+                        <?php if ($key > 0 and $key < 4){ ?>
+							<div class="item col-xs-12 col-md-6">
+								<div class="detail-image">
+									<div class="mask">
+										<img src="<?php echo site_url('assets/img/shoes/') . $value ?>" alt="image <?php echo $detail['title'] ?>">
+									</div>
+								</div>
+							</div>
+                        <?php } ?>
+                    <?php endforeach; ?>
+
+					<div class="item col-xs-12 col-md-6">
+						<?php
+							if ($detail['video'] == 1){
+								echo '<div class="video-frame">';
+								echo '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' . $detail['video_link'] . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+								echo '</div>';
+							} else{
+								echo '';
+							}
+						?>
+					</div>
+				</div>
+			</div>
+
+			<div class="right col">
+				<div id="detail-info">
+					<div class="section" id="name">
+						<h4 class="subtitle-sm">
+							<?php echo $detail['subtitle'] ?>
+						</h4>
+						<h3 class="title-sm">
+							<?php echo $detail['title'] ?>
+						</h3>
+					</div>
+
+					<div class="section" id="price">
+						<h3 class="subtitle-md">price</h3>
+
+						<h3 class="title-sm">
+                            <?php
+                            if ($detail['discount'] == 1 ){
+                                echo '$' . $detail['price_discount'] . ' <small><del>$' . $detail['price'] . '</del></small>';
+                            } else {
+                                echo '$' . $detail['price'];
+                            }
+                            ?>
+						</h3>
+					</div>
+
+					<div class="section" id="color">
+						<h3 class="subtitle-md">select color</h3>
+
+						<ul class="list-inline">
+                            <?php foreach ($detail['color'] as $key => $value): ?>
+								<li class="list-inline-item">
+									<div class="square" style="background-color: <?php echo $value ?>"></div>
+								</li>
+                            <?php endforeach; ?>
+						</ul>
+					</div>
+
+					<div class="section" id="size">
+						<h3 class="subtitle-md">select size</h3>
+
+						<ul class="list-inline">
+                            <?php foreach ($detail['size'] as $key => $value): ?>
+								<li class="list-inline-item">
+									<button class="btn btn-link" role="button">
+                                        <?php echo $value ?>
+									</button>
+								</li>
+                            <?php endforeach; ?>
+						</ul>
+					</div>
+
+					<div class="section" id="buttons">
+						<button class="btn btn-primary" role="button">
+							<i class="fas fa-shopping-cart"></i> add to cart
+						</button>
+						<button class="btn btn-outline-dark" role="button">
+							<i class="fas fa-heart"></i>
+						</button>
+					</div>
+
+					<div class="section" id="description">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#description-content" aria-expanded="false" aria-controls="description-content">
+							<h3 class="subtitle-md">description</h3>
+						</button>
+
+						<div class="collapse show" id="description-content">
+							<div class="card card-body">
+								<p class="paragraph">
+									<?php echo $detail['description'] ?>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="section" id="reviews">
+						<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#reviews-content" aria-expanded="false" aria-controls="reviews-content">
+							<h3 class="subtitle-md">reviews (13)</h3>
+						</button>
+
+						<div class="overview">
+							<ul class="list-inline star-rating">
+								<li class="list-inline-item"><i class="fas fa-star"></i></li>
+								<li class="list-inline-item"><i class="fas fa-star"></i></li>
+								<li class="list-inline-item"><i class="fas fa-star"></i></li>
+								<li class="list-inline-item"><i class="fas fa-star"></i></li>
+								<li class="list-inline-item"><i class="fas fa-star-half-alt"></i></li>
+
+								<li class="list-inline-item">4.5/5.0</li>
+							</ul>
+
+							<button type="button" class="btn btn-link" data-toggle="modal" data-target="#write-a-review">
+								write a review
+							</button>
+						</div>
+
+						<div class="collapse show" id="reviews-content">
+							<div class="review">
+								<div class="review-head">
+									<h3 class="subtitle-md">
+										The Different Methods Of Removal
+									</h3>
+
+									<div class="review-info">
+										<ul class="list-inline star-rating">
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star-half-alt"></i></li>
+										</ul>
+
+										<p class="author">Lou Butler</p>
+
+										<p class="time">05/16/2018</p>
+									</div>
+
+									<p class="paragraph">
+										Gravity is an irresistible force. While it is certainly nice that it keeps us rooted to the planet, it also has a habit of pulling things lower than we might like over time. Breast Lifts – Improvement Without Implants
+									</p>
+
+									<a href="javascript:void(0);" class="btn btn-link" role="button">
+										read full review
+									</a>
+								</div>
+							</div>
+
+							<div class="review">
+								<div class="review-head">
+									<h3 class="subtitle-md">
+										Knowing What Moisturizer To Use Is Knowing About Your Skin Part 1
+									</h3>
+
+									<div class="review-info">
+										<ul class="list-inline star-rating">
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star"></i></li>
+											<li class="list-inline-item"><i class="fas fa-star-half-alt"></i></li>
+										</ul>
+
+										<p class="author">Hester Brooks</p>
+
+										<p class="time">03/14/2018</p>
+									</div>
+
+									<p class="paragraph">
+										People who suffer from Presbyopia that causes trouble focusing on objects which are near and this doesn’t develop after the age 40.They are nearsightedness and farsightedness and suffer from the eye-glasses that are usually with thick lenses and a line across them (they act as two lenses in one).These eye-glasses have several problems: First :They are heavy, Second: They are almost unattractive, Third: It is hard to adjust to them as you have to look up or look down .All these problems cause dizziness during adapting to these bifocal lenses .The only choice for these people for long years ago was the eye-glasses even after contact lenses came on the market.
+									</p>
+
+									<a href="javascript:void(0);" class="btn btn-link" role="button">
+										read full review
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="section" id="related">
+						<div class="row">
+							<?php foreach ($result as $key => $value): ?>
+								<?php if ($value['subtitle'] === "men"){ ?>
+									<?php if ($key < 3){ ?>
+										<div class="item col-xs-12 col-md-4">
+											<div class="mask related-mask">
+												<img src="<?php echo site_url('assets/img/shoes/') . $value['image'] ?>" alt="image <?php echo $value['title'] ?>">
+											</div>
+
+											<h4 class="subtitle-sm">
+                                                <a href="<?php echo base_url('products/') ?>">
+                                                    <?php echo $value['subtitle'] ?>
+												</a>
+											</h4>
+											<h3 class="subtitle-md">
+												<a href="<?php echo base_url('products/detail/') . $value['id'] ?>">
+                                                	<?php echo $value['title'] ?>
+												</a>
+											</h3>
+											<h3 class="subtitle-md">
+                                                <?php
+                                                if ($value['discount'] == 1 ){
+                                                    echo '$' . $value['price_discount'] . ' <small><del>$' . $value['price'] . '</del></small>';
+                                                } else {
+                                                    echo '$' . $value['price'];
+                                                }
+                                                ?>
+											</h3>
+										</div>
+                                    <?php } ?>
+								<?php } ?>
+							<?php endforeach; ?>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+        //make mask square
+
+        $('#cover .mask').css( 'height' , $('#cover .mask').width() );
+        $('.detail-image .mask').css( 'height' , $('.detail-image .mask').width() );
+        $('.video-frame').css( 'height' , $('.video-frame').width() );
+        $('.related-mask').css( 'height' , $('.related-mask').width() );
+	</script>
+</section>
+    <!--
+	<div class="cover">
         <div class="mask">
             <img src="<?php echo site_url('assets/img/product/') . $detail['cover'] ?>" alt="image <?php echo $detail['title'] ?>">
 
@@ -27,8 +275,10 @@
             </div>
         </div>
     </div>
+	-->
 
-    <div class="content">
+    <!--
+	<div class="content">
         <div class="navigation container-fluid">
             <div class="container">
                 <div class="left item">
@@ -170,6 +420,9 @@
             </div>
         </div>
 
+        -->
+
+		<!--
         <div class="section container" id="spectation">
             <div class="section-heading">
                <h2 class="title-md">Specs</h2>
@@ -597,5 +850,8 @@
 			</div>
 		</div>
 
+
     </div>
-</section>
+
+   -->
+

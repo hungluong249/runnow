@@ -3,8 +3,6 @@
 		<div class="mask">
 			<img src="<?php echo $detail['image'] ?>" alt="image <?php echo $detail['image'] ?> cover">
 
-			<div class="overlay"></div>
-
 			<h1 class="title-lg"><?php echo $detail['title'] ?></h1>
 		</div>
 	</div>

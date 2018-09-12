@@ -26,6 +26,25 @@ a{
         background-color: $primary;
         border: none;
 
-        padding: 10px 20px;
+        &:hover{
+
+        }
+    }
+
+    &.btn-light{
+        border: none;
+
+        &:hover{
+            background-color: $primary;
+            color: #fff;
+        }
+    }
+
+    &.btn-link{
+        color: $gray-light;
+
+        &:hover{
+            color: $gray-dark;
+        }
     }
 }

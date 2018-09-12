@@ -12,9 +12,63 @@ Author: hung.luong@matocreative.vn
 
 #about{
     .cover{
+        width: 100%;
+        height: 100vh;
+
+        background-color: $primary;
+
+        position: relative;
+
         .mask{
-            width: 100%;
-            height: 40vh;
+            width: 75%;
+            height: 90%;
+
+            margin-left: 25%;
+        }
+
+        .text{
+            width: 50%;
+
+            position: absolute;
+            top: 25%;
+            left: 15%;
+
+            color: #fff;
+        }
+    }
+
+    #description{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    #list-about{
+        background-color: $gray-lighter;
+
+        .container{
+            .item{
+                .row{
+                    align-items: center;
+
+                    h4{
+                        &.subtitle-sm{
+                            color: $gray;
+                        }
+                    }
+
+                    h3{
+                        &.title-sm{
+                            color: $gray;
+                        }
+                    }
+
+                    p{
+                        &.paragraph{
+                            color: $gray-light;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -68,6 +122,8 @@ Author: hung.luong@matocreative.vn
         width: 100%;
         height: 100vh;
 
+        background-color: $primary;
+
         .mask{
             width: 75%;
             height: 95vh;
@@ -75,19 +131,6 @@ Author: hung.luong@matocreative.vn
             margin-left: 25%;
 
             position: relative;
-
-            .overlay{
-                width: 100%;
-                height: 100%;
-
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 3;
-
-                @include gradient-primary;
-                filter: opacity(95%);
-            }
 
             h1{
                 position: absolute;
@@ -146,6 +189,12 @@ Author: hung.luong@matocreative.vn
 
                             margin-top: 15px;
                             margin-bottom: 30px;
+                        }
+
+                        p{
+                            &.paragraph{
+                                color: $gray-light;
+                            }
                         }
                     }
                 }

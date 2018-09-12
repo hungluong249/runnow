@@ -1,112 +1,164 @@
 <!-- /.content-wrapper -->
+
+<section class="subscribe container-fluid" style="background-image: url('https://images.unsplash.com/photo-1532703108233-69111d554cb4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0def37ea239f62017c9bf69be53802f6&auto=format&fit=crop&w=634&q=80');">
+	<div class="overlay"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="left col-xs-12 col-md-4">
+				<h3 class="subtitle-md">
+					join our newsletters to update
+				</h3>
+			</div>
+
+			<div class="right col-xs-12 col-md-8">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Recipient's username" aria-label="enter your email address" aria-describedby="button-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="button" id="button-addon2">subcribe now</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <footer>
     <div class="container-fluid">
-<!--		<div class="left image">-->
-<!--			<div class="mask">-->
-<!--				<img src="https://images.unsplash.com/photo-1488992783499-418eb1f62d08?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94653fa675a682fedd91970fae3fa1e1&auto=format&fit=crop&w=1453&q=80" alt="image footer">-->
-<!--			</div>-->
-<!--		</div>-->
-<!---->
-<!--		<div class="right image">-->
-<!--			<div class="mask">-->
-<!--				<img src="https://images.unsplash.com/photo-1488992783499-418eb1f62d08?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94653fa675a682fedd91970fae3fa1e1&auto=format&fit=crop&w=1453&q=80" alt="image footer">-->
-<!--			</div>-->
-<!--		</div>-->
 
 		<div class="container">
 			<div class="row head">
-				<div class="col-xs-12 col-sm-6 col-xl-2 item">
-					<h3 class="title-sm">Product</h3>
-
+				<div class="item col-xs-12 col-md-2">
 					<ul>
 						<li>
-							<a href="<?php echo base_url('about/') ?>">
-								Speakers
+							<a href="<?php echo base_url('') ?>">
+								home
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('menu/') ?>">
-								Headphones
+							<a href="<?php echo base_url('products/') ?>">
+								men
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('blogs/') ?>">
-								Accessories
+							<a href="<?php echo base_url('products/') ?>">
+								women
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('products/') ?>">
+								kids
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('products/') ?>">
+								favorites
 							</a>
 						</li>
 					</ul>
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-xl-2 item">
-					<h3 class="title-sm">About Us</h3>
-
+				<div class="item col-xs-12 col-md-2">
 					<ul>
+						<li>get help</li>
 						<li>
-							<a href="<?php echo base_url('about/') ?>">
-								About Us
+							<a href="<?php echo base_url('') ?>">
+								order status
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('menu/') ?>">
-								Contact Us
+							<a href="<?php echo base_url('') ?>">
+								shipping and delivery
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								returns
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								payment options
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								contact us
 							</a>
 						</li>
 					</ul>
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-xl-2 item">
-					<h3 class="title-sm">Help</h3>
-
+				<div class="item col-xs-12 col-md-2">
 					<ul>
+						<li>about us</li>
 						<li>
-							<a href="<?php echo base_url('about/') ?>">
-								Help
+							<a href="<?php echo base_url('') ?>">
+								news
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('menu/') ?>">
-								Terms & Conditions
+							<a href="<?php echo base_url('') ?>">
+								careers
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								culture
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								investors
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								sustainable innocation
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								CA supply chains act
 							</a>
 						</li>
 					</ul>
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-xl-6 item">
-					<h3 class="title-sm">Help</h3>
-
-					<div class="input-group">
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="button-addon2" placeholder="Enter email">
-						<button type="button " class="btn btn-default" id="button-addon2">Subscribe</button>
-					</div>
-
+				<div class="item col-xs-12 col-md-6">
+					<ul>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								<i class="fab fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								<i class="fab fa-pinterest"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('') ?>">
+								<i class="fab fa-youtube"></i>
+							</a>
+						</li>
+					</ul>
 				</div>
-			</div>
-
-			<div class="row body">
-				<div class="col-xs-12 col-sm-12 col-md-12">
-					<h3 class="title-sm">Showroom</h3>
-				</div>
-
-				<?php for ($i = 0; $i <4; $i++) { ?>
-				<div class="col-xs-12 col-sm-6 col-xl-3 item">
-					<p class="paragraph">Location</p>
-					<p class="paragraph">
-						917 Rosenbaum Lodge Apt. 831
-					</p>
-					<a href="tel:(84) 1234 5678">
-						(84) 1234 5678
-					</a>
-					<a href="mailto:showroom1@soundon.store">
-						showroom1@soundon.store
-					</a>
-				</div>
-				<?php } ?>
-
 			</div>
 
 			<div class="row foot">
 				<div class="col">
-					<p class="paragraph">2018 soundon</p>
+					<p class="paragraph">2018 Run Now</p>
 				</div>
 				<div class="col">
 					<p class="paragraph"> &copy; All Copyrights Reversed.</p>
@@ -116,9 +168,6 @@
 	</div>
 </footer>
 
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <!-- popper js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
