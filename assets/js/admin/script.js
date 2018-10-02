@@ -1,16 +1,16 @@
 switch(window.location.origin){
-    case 'http://teddy.com':
-        var HOSTNAME = 'http://teddy.com/';
+    case 'http://runnow.com':
+        var HOSTNAME = 'http://runnow.com/';
         break;
     default:
-        var HOSTNAME = 'http://localhost/teddy/';
+        var HOSTNAME = 'http://localhost/runnow/';
 }
 switch(window.location.origin){
-    case 'http://teddy.com':
-        var HOSTNAMEADMIN = 'http://teddy.com/admin';
+    case 'http://runnow.com':
+        var HOSTNAMEADMIN = 'http://runnow.com/admin';
         break;
     default:
-        var HOSTNAMEADMIN = 'http://localhost/teddy/admin';
+        var HOSTNAMEADMIN = 'http://localhost/runnow/admin';
 } 
 $(document).ready(function(){
     "use strict";
