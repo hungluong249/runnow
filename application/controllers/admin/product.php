@@ -143,20 +143,42 @@ class Product extends Admin_Controller{
     public function detail($id){
         if($id &&  is_numeric($id) && ($id > 0)){
             if($this->product_model->find_rows(array('id' => $id,'is_deleted' => 0)) != 0){
-                $this->load->helper('form');
-                $this->load->library('form_validation');
-                $this->load->model('features_model');
-                $this->load->model('color_model');
-                $detail = $this->product_model->get_by_id($id, array('title', 'description', 'content','data_lang'));
-                $this->data['color_product'] = $this->color_model->get_librarycolor_by_id_array(json_decode($detail['common'],true)['color']);
-                $this->data['features'] = $this->features_model->get_libraryfeatures_by_id_array(json_decode($detail['features'],true));
-                $detail = build_language($this->data['controller'], $detail, array('title', 'description', 'content','data_lang'), $this->page_languages);
-                $parent_title = $this->build_parent_title($detail['product_category_id']);
-                $detail['parent_title'] = $parent_title;
-                $this->data['detail'] = $detail;
-                $this->data['templates'] = array_slice(json_decode($detail['data_templates'],true), $this->data['number_field']);
-                $this->data['templates_all'] = json_decode($detail['data_templates'],true);
-                $this->render('admin/product/detail_product_view');
+                $check = 0;
+                if(isset($_GET['comment'])){
+                    $check = 1;
+                    unset($_GET['comment']);
+                }
+                $this->load->library('pagination');
+                $this->load->model('comment_model');
+                $per_page = 5;
+                $total_rows  = $this->comment_model->count_search_without_by_product_id($id,1);
+                $config = $this->pagination_config(base_url('admin/'.$this->data['controller'].'/detail/'. $id), $total_rows, $per_page, 5);
+                $this->data['page'] = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+                $this->pagination->initialize($config);
+                $this->data['page_links'] = $this->pagination->create_links();
+                $this->data['comments'] = $this->comment_model->get_all_by_product_id($id , $per_page, $this->data['page'],1);
+                if($check == 1){
+                    $reponse = array(
+                        'comment' => $this->data['comments'],
+                        'page_links' => $this->data['page_links'],
+                    );
+                    return $this->return_api(HTTP_SUCCESS,'success',$reponse);
+                }else{
+                    $this->load->helper('form');
+                    $this->load->library('form_validation');
+                    $this->load->model('features_model');
+                    $this->load->model('color_model');
+                    $detail = $this->product_model->get_by_id($id, array('title', 'description', 'content','data_lang'));
+                    $this->data['color_product'] = $this->color_model->get_librarycolor_by_id_array(json_decode($detail['common'],true)['color']);
+                    $this->data['features'] = $this->features_model->get_libraryfeatures_by_id_array(json_decode($detail['features'],true));
+                    $detail = build_language($this->data['controller'], $detail, array('title', 'description', 'content','data_lang'), $this->page_languages);
+                    $parent_title = $this->build_parent_title($detail['product_category_id']);
+                    $detail['parent_title'] = $parent_title;
+                    $this->data['detail'] = $detail;
+                    $this->data['templates'] = array_slice(json_decode($detail['data_templates'],true), $this->data['number_field']);
+                    $this->data['templates_all'] = json_decode($detail['data_templates'],true);
+                    $this->render('admin/product/detail_product_view');
+                }
             }else{
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
                 redirect('admin/product', 'refresh');

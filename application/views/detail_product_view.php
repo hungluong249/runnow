@@ -126,10 +126,8 @@
 
 								<li class="list-inline-item">4.5/5.0</li>
 							</ul>
-
-							<button type="button" class="btn btn-link" data-toggle="modal" data-target="#write-a-review">
-								write a review
-							</button>
+			                <?php $check_username = empty($username) ? '#login' : '#comment'; ?>
+							<button class="btn btn-light" type="button"  data-toggle="modal" data-target="<?php echo $check_username; ?>" data-whatever="@getbootstrap">Write a Review</button>
 						</div>
 
 						<div class="collapse show" id="reviews-content">

@@ -51,15 +51,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<div class="right col-lg-6">
 					<ul>
+						<?php if(empty($username->id)): ?>
+							<li>
+								<a href="<?php echo base_url('')?>" data-toggle="modal" data-target="#login" data-whatever="@getbootstrap">
+									Log in
+								</a>
+							</li>
+	    				<?php endif; ?>
 						<li>
-							<a href="<?php echo base_url('')?>">
-								sign in
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url('')?>">
-								sign up
-							</a>
+							<?php if(!empty($username->id)): ?>
+								<a href="<?php echo base_url('')?>" data-toggle="modal" data-target="#Personal" data-whatever="@getbootstrap">
+									Personal information
+								</a>
+	        				<?php else: ?>
+								<a href="<?php echo base_url('')?>" data-toggle="modal" data-target="#signup" data-whatever="@getbootstrap">
+									Sign up
+								</a>
+	        				<?php endif; ?>
 						</li>
 						<li>
 							<a href="<?php echo base_url('')?>">
