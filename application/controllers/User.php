@@ -10,12 +10,15 @@ class User extends MY_Controller {
     }
 
     public function index() {
-        
+
     }
 
     public function login() {
-        if ($this->ion_auth->in_group('members')) {
-            redirect('admin/dashboard', 'refresh');
+        if ($this->ion_auth->in_group('members_client')) {
+            echo "<pre>";
+            print_r($this->ion_auth->user()->row());
+            echo "<pre>";die;
+            redirect('/', 'refresh');
         }
         $this->data['page_title'] = 'Login';
         if ($this->input->post()) {
@@ -26,22 +29,23 @@ class User extends MY_Controller {
             if ($this->form_validation->run() === TRUE) {
                 $remember = (bool) $this->input->post('remember');
                 if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
-                    redirect('admin', 'refresh');
+                    if (!$this->ion_auth->in_group('members_client')) {
+                        $this->ion_auth->logout();
+                        $this->session->set_flashdata('auth_message', 'Tài khoản không tồn tại.');
+                    }else{
+                        redirect('/', 'refresh');
+                    }
                 } else {
-                    $this->session->set_flashdata('message', $this->ion_auth->errors());
-                    redirect('admin/user/login', 'refresh');
+                    $this->session->set_flashdata('auth_message', $this->ion_auth->errors());
+                    // redirect('user/login', 'refresh');
                 }
             }
         }
         $this->load->helper('form');
-        //$this->render('admin/login_view', 'admin_master');
-        $this->load->view('admin/login_f_view');
+        $this->load->view('user/login_f_view');
     }
 
     public function register(){
-        if($this->ion_auth->is_admin()===FALSE){
-            redirect('admin/dashboard', 'refresh');
-        }
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -77,7 +81,8 @@ class User extends MY_Controller {
 
         if($this->form_validation->run()===FALSE){
             $this->load->helper('form');
-            $this->render('admin/user/register_view', 'admin_master');
+            $this->render('user/register_view');
+
         }
         else{
             $first_name = $this->input->post('first_name');
@@ -90,20 +95,61 @@ class User extends MY_Controller {
                 'first_name' => $first_name,
                 'last_name' => $last_name
             );
-            $group = array('2','3');
+            $group = array('3');
             $this->load->library('ion_auth');
             if($this->ion_auth->register($username, $password, $email, $additional_data, $group)){
                 $this->session->set_flashdata('auth_message', 'Đăng ký tài khoản thành công!.');
-                redirect('admin/user/register', 'refresh');
+                redirect('user/register', 'refresh');
             }
             else{
                 $this->session->set_flashdata('auth_message', $this->ion_auth->errors());
-                redirect('admin/user/register', 'refresh');
+                redirect('user/register', 'refresh');
             }
         }
 
         
     }
+    public function change_info(){
+        if (!$this->ion_auth->in_group('members_client')) {
+            redirect('/', 'refresh');
+        }
+        $this->load->library('ion_auth');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('first_name', 'Họ','trim|required',
+            array('required' => '%s không được trống.')
+        );
+        $this->form_validation->set_rules('last_name', 'Tên','trim|required',
+            array('required' => '%s không được trống.')
+        );
+
+        if($this->form_validation->run()===FALSE){
+            $this->load->helper('form');
+            $this->render('user/change_info_view');
+        }
+        else{
+            $first_name = $this->input->post('first_name');
+            $last_name = $this->input->post('last_name');
+
+            $additional_data = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+            );
+            $update = $this->ion_auth->update($this->ion_auth->user()->row()->id, $additional_data);
+            if($update){
+                $this->session->set_flashdata('auth_message', 'Thay đổi tài khoản thành công!.');
+                redirect('user/change_info', 'refresh');
+            }
+            else{
+                $this->session->set_flashdata('auth_message', $this->ion_auth->errors());
+                redirect('user/change_info', 'refresh');
+            }
+        }
+
+        
+    }
+
     public function forgot_password(){
         $this->load->library('ion_auth');
         $this->load->library('email');
@@ -120,13 +166,13 @@ class User extends MY_Controller {
         );
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('admin/user/forgot_password_view');
+            $this->load->view('user/forgot_password_view');
         } else {
             if($this->input->post()){
                 $email = $this->input->post('email');
                 if (!$this->ion_auth->email_check($email)){
                     $this->session->set_flashdata('auth_message','Email không đúng. Vui lòng kiểm tra lại');
-                    return redirect('admin/user/forgot_password');
+                    return redirect('user/forgot_password');
                 }
                 $forgotten = $this->ion_auth->forgotten_password($email);
                 $config = [
@@ -155,7 +201,7 @@ class User extends MY_Controller {
 
                 if ($this->email->send()) {
                     $this->session->set_flashdata('auth_message','Đã gửi Email thành công. Vui lòng kiểm tra Email!');
-                    return redirect('admin/user/login');
+                    return redirect('user/login');
                 } 
                 else {
                     echo "Email not send .....";
@@ -165,6 +211,7 @@ class User extends MY_Controller {
         }
         
     }
+
     public function reset_password($code){
 
         $this->load->helper('form');
@@ -194,7 +241,7 @@ class User extends MY_Controller {
             if ($this->form_validation->run() == FALSE) {
                 $this->data['csrf'] = $this->security->get_csrf_hash();
                 $this->data['code'] = $code;
-                $this->load->view("admin/user/reset_password_view", $this->data);
+                $this->load->view("user/reset_password_view", $this->data);
             } else {
                 if($this->input->post()){
                     if ($user){
@@ -204,15 +251,15 @@ class User extends MY_Controller {
                             if($this->ion_auth->update($user->id, $data)){
                                 $this->ion_auth->clear_forgotten_password_code($code);
                                 $this->session->set_flashdata('auth_message', $this->ion_auth->messages());
-                                redirect("admin/user/login", 'refresh');
+                                redirect("user/login", 'refresh');
                             }else{
-                                redirect('admin/user/reset_password/' . $code, 'refresh');
+                                redirect('user/reset_password/' . $code, 'refresh');
                             }
                             
                         }
                         else { //if the reset didnt work then send them back to the forgot password page
                             $this->session->set_flashdata('auth_message', $this->ion_auth->errors());
-                            redirect("admin/user/forgot_password", 'refresh');
+                            redirect("user/forgot_password", 'refresh');
                         }
                     }
                 }
@@ -223,8 +270,8 @@ class User extends MY_Controller {
     public function change_password(){
         $this->load->helper('form');
         $this->load->library('form_validation');
-        if (!$this->ion_auth->logged_in()){
-            redirect('admin/user/login', 'refresh');
+        if (!$this->ion_auth->in_group('members_client')){
+            redirect('user/login', 'refresh');
         }
         $user = $this->ion_auth->user()->row();
         $this->data['user_id'] = $user->id;
@@ -250,7 +297,7 @@ class User extends MY_Controller {
         );
 
         if ($this->form_validation->run() == FALSE) {
-            $this->render('admin/user/change_password_view', 'admin_master');
+            $this->render('user/change_password_view');
         } else {
             if ($this->input->post()) {
                 $identity = $this->session->userdata('identity');
@@ -259,10 +306,10 @@ class User extends MY_Controller {
                 //if the password was successfully changed
                     $this->logout();
                     $this->session->set_flashdata('auth_message', 'Đổi mật khẩu thành công. Vui lòng đăng nhập lại!');
-                    redirect('admin/user/login', 'refresh');
+                    redirect('user/login', 'refresh');
                 }else{
                     $this->session->set_flashdata('auth_message', 'Mật khẩu không đúng vui lòng kiểm tra lại');
-                    redirect('admin/user/change_password', 'refresh');
+                    redirect('user/change_password', 'refresh');
                 }
             }
         }
@@ -272,8 +319,16 @@ class User extends MY_Controller {
     }
 
     public function logout() {
-        $this->ion_auth->logout();
-        redirect('admin/user/login', 'refresh');
+        if(!$this->ion_auth->logout()){
+            $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_BAD_REQUEST)
+                ->set_output(json_encode(array('status' => HTTP_BAD_REQUEST)));
+        }
+        $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(HTTP_SUCCESS)
+            ->set_output(json_encode(array('status' => HTTP_SUCCESS)));
     }
 
 }
